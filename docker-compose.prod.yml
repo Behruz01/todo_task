@@ -4,11 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     ports:
-      - '9009:9009'
+      - '9001:9001'
     environment:
-      - PORT=9009
-      - DB_PASSWORD=2002
-      - DB_USER=postgres
-      - DB_NAME=todostask
+      - PORT=9001
     volumes:
       - ./src:/usr/src/app/src

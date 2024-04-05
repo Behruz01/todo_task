@@ -7,8 +7,13 @@ services:
       - '9009:9009'
     environment:
       - PORT=9009
-      - DB_PASSWORD=2002
-      - DB_USER=postgres
-      - DB_NAME=todostask
     volumes:
       - ./src:/usr/src/app/src
+  postgres_db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=2002
+      - DB_USER=postgres
+      - DB_NAME=todostask
