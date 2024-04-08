@@ -12,5 +12,8 @@ export class KnexService {
       user: process.env.DB_USER,
       database: process.env.DB_NAME,
     },
+    migrations: {
+      directory: "../../migrations"
+    }
   });
 }
