@@ -53,7 +53,14 @@ describe('TodosController', () => {
 
   describe('findAll', () => {
     it('should return a list of todos', async () => {
-      const todos = [{ id: '622394fe-21d6-4d99-8d8a-31f97b7d6c63', title: 'Todo 1', description: 'Description 1', estimate: new Date(), status: 'todo' }];
+      const todos = [
+        {
+          id: '622394fe-21d6-4d99-8d8a-31f97b7d6c63',
+          title: 'Todo 1',
+          description: 'Description 1',
+          estimate: new Date(),
+          status: 'todo'
+        }];
       jest.spyOn(service, 'findAll').mockResolvedValue(todos);
 
       expect(await controller.findAll()).toEqual(todos);
@@ -63,7 +70,13 @@ describe('TodosController', () => {
   describe('findOne', () => {
     it('should return a todo by ID', async () => {
       const todoId = '622394fe-21d6-4d99-8d8a-31f97b7d6c63';
-      const todo = { id: todoId, title: 'Test Todo', description: 'Test Description', estimate: new Date(), status: 'todo' };
+      const todo = {
+        id: todoId,
+        title: 'Test Todo',
+        description: 'Test Description',
+        estimate: new Date(),
+        status: 'todo'
+      };
       jest.spyOn(service, 'findOne').mockResolvedValue(todo);
 
       expect(await controller.findOne(todoId)).toEqual(todo);
@@ -107,24 +120,24 @@ describe('TodosController', () => {
 
   describe('remove', () => {
     it('should delete a todo by ID', async () => {
-      // const todoId = '622394fe-21d6-4d99-8d8a-31f97b7d6c63';
-      // jest.spyOn(service, 'remove').mockResolvedValue({ message: 'Todo deleted successfully' });
+      const todoId = '622394fe-21d6-4d99-8d8a-31f97b7d6c63';
+      jest.spyOn(service, 'remove').mockResolvedValue({ message: 'Todo deleted successfully' });
 
-      // expect(await controller.remove(todoId, true)).toEqual({ message: 'Todo deleted successfully' });
+      expect(await controller.remove(todoId, true)).toEqual({ message: 'Todo deleted successfully' });
     });
 
     it('should soft delete a todo by ID if isHard is false', async () => {
-      // const todoId = '622394fe-21d6-4d99-8d8a-31f97b7d6c63';
-      // jest.spyOn(service, 'remove').mockResolvedValue({ message: 'Todo deleted successfully' });
+      const todoId = '622394fe-21d6-4d99-8d8a-31f97b7d6c63';
+      jest.spyOn(service, 'remove').mockResolvedValue({ message: 'Todo deleted successfully' });
 
-      // expect(await controller.remove(todoId, false)).toEqual({ message: 'Todo deleted successfully' });
+      expect(await controller.remove(todoId, false)).toEqual({ message: 'Todo deleted successfully' });
     });
 
     it('should throw 404 error if todo not found', async () => {
-      // const todoId = '622394fe-21d6-4d99-8d8a-31f97b7d6c63';
-      // jest.spyOn(service, 'remove').mockRejectedValue(new HttpException('Data not found!', HttpStatus.NOT_FOUND));
+      const todoId = '622394fe-21d6-4d99-8d8a-31f97b7d6c63';
+      jest.spyOn(service, 'remove').mockRejectedValue(new HttpException('Data not found!', HttpStatus.NOT_FOUND));
 
-      // await expect(controller.remove(todoId, true)).rejects.toThrowError(new HttpException('Data not found!', HttpStatus.NOT_FOUND));
+      await expect(controller.remove(todoId, true)).rejects.toThrowError(new HttpException('Data not found!', HttpStatus.NOT_FOUND));
     });
   });
 
