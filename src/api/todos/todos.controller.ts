@@ -67,7 +67,7 @@ export class TodosController {
   @ApiOperation({ summary: 'Update a status by ID' })
   @ApiResponse({ status: 200, description: 'The status has been successfully updated.', type: UpdateTodoDto })
   @ApiResponse({ status: 404, description: 'Todo not found.' })
-  @Put('changstatus/:id')
+  @Put('changestatus/:id')
   async updateStatus(@Param('id') id: string, @Body() updateStatusDto: UpdateStatusDto) {
     return this.todosService.updateStatus(id, updateStatusDto);
   }
