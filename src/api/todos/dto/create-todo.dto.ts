@@ -1,5 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, IsDateString, IsEnum } from "class-validator";
+
+enum TodoStatus {
+    TODO = 'todo',
+    DOING = 'doing',
+    DONE = 'done'
+}
 
 export class CreateTodoDto {
     @ApiProperty({
@@ -17,16 +23,16 @@ export class CreateTodoDto {
     description: string
 
     @ApiProperty({
-        example: "Status(doing/done)"
+        example: "todo"
     })
-    @IsString()
-    @IsOptional()
-    status: string
+    @IsEnum(TodoStatus)
+    @IsNotEmpty()
+    status: TodoStatus
 
     @ApiProperty({
         example: "2024-02-16T16:40:50.212Z"
     })
-    @IsString()
+    @IsDateString()
     @IsNotEmpty()
     estimate: Date
 }

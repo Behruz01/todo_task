@@ -15,9 +15,8 @@ export class TodosService {
       await this.knex.instance("todos").insert({ title, description, estimate, status })
       return { message: "Todo created successfully" }
     } catch (error) {
-      console.log("error==", error);
       throw new HttpException(error.message, error.status ||
-        HttpStatus.INTERNAL_SERVER_ERROR)
+        HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -27,7 +26,7 @@ export class TodosService {
       return data
     } catch (error) {
       throw new HttpException(error.message, error.status ||
-        HttpStatus.INTERNAL_SERVER_ERROR)
+        HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -39,7 +38,7 @@ export class TodosService {
       }
       return findData;
     } catch (error) {
-      throw new HttpException(error.message, error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, error.status || HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -53,7 +52,7 @@ export class TodosService {
       await this.knex.instance("todos").where({ id }).update({ title, description, estimate, status });
       return { message: "Todo updated successfully" };
     } catch (error) {
-      throw new HttpException(error.message, error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, error.status || HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -70,7 +69,7 @@ export class TodosService {
       }
       return { message: 'Todo deleted successfully' };
     } catch (error) {
-      throw new HttpException(error.message, error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, error.status || HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -84,7 +83,7 @@ export class TodosService {
       await this.knex.instance("todos").where({ id }).update({ status });
       return { message: "Status updated successfully" };
     } catch (error) {
-      throw new HttpException(error.message, error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, error.status || HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -100,7 +99,7 @@ export class TodosService {
       });
       return groupedTasks;
     } catch (error) {
-      throw new HttpException(error.message, error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, error.status || HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -113,7 +112,7 @@ export class TodosService {
       }
       return data;
     } catch (error) {
-      throw new HttpException(error.message, error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, error.status || HttpStatus.BAD_REQUEST);
     }
   }
 }
